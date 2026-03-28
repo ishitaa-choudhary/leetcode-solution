@@ -1,0 +1,24 @@
+// leetcode 844 using stack
+class Solution {
+    public boolean backspaceCompare(String s, String t) {
+
+        Stack<Character> ss=new Stack<>();
+        for(int i=0; i<s.length(); i++){
+            if(s.charAt(i)!='#') ss.push(s.charAt(i));
+            else if(s.charAt(i)=='#' && ss.size()!=0) ss.pop();
+            else continue;
+        }
+
+        Stack<Character> st=new Stack<>();
+        for(int i=0; i<t.length(); i++){
+            if(t.charAt(i)!='#') st.push(t.charAt(i));
+            else if(t.charAt(i)=='#' && st.size()!=0) st.pop();
+            else continue;
+        }
+        if(ss.size() !=st.size()) return false;
+        while(!st.isEmpty()){
+            if(st.pop() !=ss.pop()) return false;
+        }
+        return true;
+    }
+}
